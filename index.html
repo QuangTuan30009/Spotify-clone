@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tunify</title>
+    <link rel="icon" type="image/svg+xml" href="./spotify-brands-solid.svg" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <!------Header------->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fa-solid fa-music"></i>
+                <h1>Tunify</h1>
+            </div>
+
+            <nav class="nav">
+                <button class="button-header">
+                    <i class="fa-solid fa-music"></i>
+                    Spotify Contect
+                </button>
+            </nav>
+        </div>
+    </header>
+    <!------Main------->
+    <main class="main">
+      <div class="container">
+        <!--Search section-->
+        <section class="search-section">
+          <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input placeholder="Tìm kiếm bài hát, playlist, nghệ sĩ" type="text" id="search-input">
+          </div>
+        </section>
+
+        <!---Feature Section-->
+        <section class="featured-section">
+          <div class="section-headrer">
+            <h2 class="section-content">Nhạc HOT Việt Nam</h2>
+              <button class="animated-button">
+                <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                  ></path>
+                </svg>
+                <span class="text">Mở playlist</span>
+                <span class="circle"></span>
+                <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                  ></path>
+                </svg>
+              </button>
+          </div>
+          <!--Card Section-->
+          <div id="track-section" class="track-section">
+            <!-- <div class="track-card">
+                <div class="track-crard-container">
+                  <img src="https://tse4.mm.bing.net/th/id/OIP.HQiaBSG05eVRr0xWLpGZDgHaEo?rs=1&pid=ImgDetMain&o=7&rm=3" alt="">
+                  <h3>Đừng làm trái tim anh đau</h3>
+                  <p>Son Tung MTP</p>
+                </div>
+            </div> 123
+            <div class="track-card">
+                <div class="track-crard-container">
+                  <img src="https://tse4.mm.bing.net/th/id/OIP.HQiaBSG05eVRr0xWLpGZDgHaEo?rs=1&pid=ImgDetMain&o=7&rm=3" alt="">
+                  <h3>Đừng làm trái tim anh đau</h3>
+                  <p>Son Tung MTP</p>
+                </div>
+            </div>
+            <div class="track-card">
+                <div class="track-crard-container">
+                  <img src="https://tse4.mm.bing.net/th/id/OIP.HQiaBSG05eVRr0xWLpGZDgHaEo?rs=1&pid=ImgDetMain&o=7&rm=3" alt="">
+                  <h3>Đừng làm trái tim anh đau</h3>
+                  <p>Son Tung MTP</p>
+                </div>
+            </div>
+            <div class="track-card">
+                <div class="track-crard-container">
+                  <img src="https://tse4.mm.bing.net/th/id/OIP.HQiaBSG05eVRr0xWLpGZDgHaEo?rs=1&pid=ImgDetMain&o=7&rm=3" alt="">
+                  <h3>Đừng làm trái tim anh đau</h3>
+                  <p>Son Tung MTP</p>
+                </div>
+            </div>
+          </div> -->
+          
+        </section>
+
+
+      </div>
+    </main>
+
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <h2 id="modal-name">Tên bài hát</h2>
+        <button class="modal-close" id="modal-close">&times;</button>
+      </div>
+        <iframe id="iframe" 
+              title="Spotify Embed: Recommendation Playlist"
+              src="https://open.spotify.com/embed/track/?utm_source=generator&theme=0"
+              width="100%"
+              height="100%"
+              style="min-height: 360px;"
+              frameborder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+        ></iframe>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.9.0/axios.min.js" integrity="sha512-FPlUpimug7gt7Hn7swE8N2pHw/+oQMq/+R/hH/2hZ43VOQ+Kjh25rQzuLyPz7aUWKlRpI7wXbY6+U3oFPGjPOA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./index.js"></script>
+    <script src="./config.js"></script>
+  </body>
+</html>

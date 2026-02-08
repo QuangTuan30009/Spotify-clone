@@ -1,0 +1,449 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+}
+
+header{
+    background: rgba(0, 0, 0, 0.4);
+    padding: 1.5rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+header .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+
+header .container .logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+header .container .logo i{
+    color: #7877c6;
+    font-size: 2rem;
+}
+
+header .container .logo h1{
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, #7877c6, #78dbff, #ff77c6, #c677ff);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 3s ease-in-out infinite;
+    text-shadow: 0 0 30px rgba(120, 119, 198, 0.5);
+}
+
+/* From Uiverse.io by barisdogansutcu */ 
+.button-header {
+  padding: 14px 28px;
+  border-radius: 30px;
+  cursor: pointer;
+  border: 0;
+  background: rgb(30, 215, 96);
+  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 1rem;
+  transition: all 0.5s ease;
+  font-weight: 700;
+}
+
+.button-header:hover {
+  letter-spacing: 3px;
+  background-color: hsl(261deg 80% 48%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+}
+
+.button-header:active {
+  letter-spacing: 3px;
+  background-color: hsl(261deg 80% 48%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+  transform: translateY(5px);
+  transition: 100ms;
+}
+
+
+
+
+/*Main*/
+
+main{
+    margin-top: 3rem;
+}
+
+
+
+.search-container{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    position: relative;
+}
+
+.search-container i{
+    position: absolute;
+    top: 50%;
+    left: 20px;  /* thay vì left: 0 */
+    transform: translateY(-50%); 
+    color: rgba(255, 255, 255, 0.7);
+    margin-right: 20px;
+    font-size: 1.2rem;
+    z-index: 1;
+}
+
+.search-section input{
+    flex: 1;
+    padding: 18px 25px;
+    border: none;
+    border-radius: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    color: white;
+    padding-left: 45px;
+    font-size: 15px;
+}
+
+.search-section input:focus{
+    outline: none;
+    border-color: #7877c6;
+    box-shadow: 0 0 10px #7877c6;
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.search-container:has(input:focus) i{
+    color: #7877c6;
+    transform: translateY(-50%) scale(1.15);
+}
+.search-container i{
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+input::placeholder{
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 18px;
+}
+
+
+/* From Uiverse.io by gharsh11032000 */ 
+.animated-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 28px;
+  border: 4px solid;
+  border-color: transparent;
+  font-size: 14px;
+  background-color: inherit;
+  border-radius: 100px;
+  font-weight: 600;
+  color: rgb(30, 215, 96);
+  box-shadow: 0 0 0 2px rgb(30, 215, 96);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button svg {
+  position: absolute;
+  width: 18px;
+  fill: rgb(30, 215, 96);
+  z-index: 9;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .arr-1 {
+  right: 16px;
+}
+
+.animated-button .arr-2 {
+  left: -25%;
+}
+
+.animated-button .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: rgb(30, 215, 96);
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .text {
+  position: relative;
+  z-index: 1;
+  transform: translateX(-12px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button:hover {
+  box-shadow: 0 0 0 12px transparent;
+  color: #212121;
+  border-radius: 12px;
+}
+
+.animated-button:hover .arr-1 {
+  right: -25%;
+}
+
+.animated-button:hover .arr-2 {
+  left: 16px;
+}
+
+.animated-button:hover .text {
+  transform: translateX(12px);
+}
+
+.animated-button:hover svg {
+  fill: #212121;
+}
+
+.animated-button:active {
+  scale: 0.95;
+  box-shadow: 0 0 0 4px greenyellow;
+}
+
+.animated-button:hover .circle {
+  width: 220px;
+  height: 220px;
+  opacity: 1;
+}
+
+
+main .section-headrer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+
+}
+
+main .section-headrer h2{
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+main .track-section{
+    display: flex;
+    /* justify-content: space-between;
+    align-items: center;     */
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+main .track-section .track-card-container{
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 10px;
+
+}
+main .track-section .track-card{
+    /* border: 1px solid red; */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 15px;
+    width: calc(100% / 3 - 20px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+
+}
+
+main .track-section .track-card img{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+main .track-section .track-card h3{
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+main .track-section .track-card p{
+    opacity: 0.8;
+    font-size: 1rem;
+    color: #ccc;
+}
+
+/* Track card hover effects */
+.track-card {
+    cursor: pointer;
+    pointer-events: auto;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+.track-card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 20px 50px rgba(120, 119, 198, 0.5);
+    z-index: 10;
+}
+
+.track-card:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(120, 119, 198, 0.2) 0%, rgba(83, 52, 131, 0.2) 100%);
+    border-radius: inherit;
+    z-index: -1;
+}
+
+.track-card:hover img {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+.track-card img {
+    transition: all 0.4s ease;
+}
+
+.track-card:hover h3 {
+    color: #7877c6;
+    transform: translateX(5px);
+}
+
+.track-card h3 {
+    transition: all 0.3s ease;
+}
+
+.track-card:hover p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.track-card * {
+    pointer-events: none;
+}
+
+/* Active state */
+.track-card:active {
+    transform: translateY(-8px) scale(0.98);
+}
+
+.modal{
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 500px;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(15px);
+  z-index: 200;
+  padding: 20px;
+  border-radius: 25px;
+}
+/* Modal content */
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 750px;
+  background: linear-gradient(135deg, #6b4f4f 0%, #4a3535 100%);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+  animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Modal header */
+.modal-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.modal-header h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0;
+  color: #fff;
+}
+/* Close button */
+.modal-close {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg) scale(1.1);
+}
+/* Iframe player */
+#iframe {
+  width: 100%;
+  height: 420px;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    padding: 20px;
+    max-width: 600px;
+  }
+  #iframe {
+    height: 320px;
+  }
+  .modal-header h2 {
+    font-size: 1.3rem;
+  }
+}
