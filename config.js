@@ -1,26 +1,25 @@
-//Tự động detect URL hiện tại 
+// Spotify OAuth Configuration
+// Client credentials are now stored in backend (.env file)
+// This file is kept for backwards compatibility
+
 function getCurrentURL() {
-    if (typeof window !== 'undefined'){
-        return window.location.origin;
-    }
-    //Fallback cho các trường hợp không có window object
-    return 'http://localhost:3000';
+  if (typeof window !== "undefined") {
+    return window.location.origin;
+  }
+  return "http://localhost:3000";
 }
 
-//Spotify API Config
+// Deprecated - now using OAuth flow
 const SPOTIFY_CONFIG = {
-    clientId: '843c972142e44429987c08846ebf4aa3',
-    clientSecret: 'd377713ba9ab4e00ad1b6943e715eeff',
-    TOKEN_URL: 'https://accounts.spotify.com/api/token',
-    get redirectUri() {
-        return `${getCurrentURL()}`;
-    }
+  // These are no longer used in frontend
+  // All authentication is handled by backend
+  apiBase: "http://localhost:3000",
 };
 
 console.log(`
-🎵 SPORTIFY WEB PLAYER
-📝 Cấu hình:
-- Client ID: ${SPOTIFY_CONFIG.clientId ? "✅" : "❌"}
-- Client Secret: ${SPOTIFY_CONFIG.clientSecret ? "✅" : "❌"}
-- Redirect URI: ${SPOTIFY_CONFIG.redirectUri}
+🎵 TUNIFY - SPOTIFY WEB PLAYER
+📝 Authentication Mode: OAuth 2.0
+🔐 Secure: Client credentials stored in backend
+🌐 API Base: ${SPOTIFY_CONFIG.apiBase}
+✨ Status: Ready
 `);

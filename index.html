@@ -24,10 +24,20 @@
             </div>
 
             <nav class="nav">
-                <button class="button-header">
-                    <i class="fa-solid fa-music"></i>
-                    Spotify Contect
-                </button>
+                <!-- Login/User Info -->
+                <div id="auth-section">
+                    <button class="button-header" id="login-btn" style="display: none;">
+                        <i class="fa-brands fa-spotify"></i>
+                        Login with Spotify
+                    </button>
+                    <div id="user-info" style="display: none; align-items: center; gap: 10px;">
+                        <span id="user-name" style="color: #fff;"></span>
+                        <button class="button-header" id="logout-btn">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            Logout
+                        </button>
+                    </div>
+                </div>
             </nav>
         </div>
     </header>
