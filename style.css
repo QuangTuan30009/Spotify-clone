@@ -1,64 +1,76 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-    min-height: 100vh;
-    background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    position: relative;
+body {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #0c0c0c 0%,
+    #1a1a2e 25%,
+    #16213e 50%,
+    #0f3460 75%,
+    #533483 100%
+  );
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
 }
 
-header{
-    background: rgba(0, 0, 0, 0.4);
-    padding: 1.5rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(10px);
-
+header {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 1.5rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
 }
 
-.container{
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
-header .container{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
 }
 
-header .container .logo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+header .container .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
-header .container .logo i{
-    color: #7877c6;
-    font-size: 2rem;
+header .container .logo i {
+  color: #7877c6;
+  font-size: 2rem;
 }
 
-header .container .logo h1{
-    font-size: 2.2rem;
-    font-weight: 800;
-    background: linear-gradient(45deg, #7877c6, #78dbff, #ff77c6, #c677ff);
-    background-size: 300% 300%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientShift 3s ease-in-out infinite;
-    text-shadow: 0 0 30px rgba(120, 119, 198, 0.5);
+header .container .logo h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  background: linear-gradient(45deg, #7877c6, #78dbff, #ff77c6, #c677ff);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s ease-in-out infinite;
+  text-shadow: 0 0 30px rgba(120, 119, 198, 0.5);
 }
 
-/* From Uiverse.io by barisdogansutcu */ 
+#auth-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* From Uiverse.io by barisdogansutcu */
 .button-header {
   padding: 14px 28px;
   border-radius: 30px;
@@ -89,74 +101,80 @@ header .container .logo h1{
   transition: 100ms;
 }
 
+.google-btn {
+  background: #ffffff;
+  color: #1a1a1a;
+}
 
-
+.google-btn:hover,
+.google-btn:active {
+  background-color: #f1f3f4;
+  color: #1a1a1a;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.25);
+}
 
 /*Main*/
 
-main{
-    margin-top: 3rem;
+main {
+  margin-top: 3rem;
 }
 
-
-
-.search-container{
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    display: flex;
-    position: relative;
+.search-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  position: relative;
 }
 
-.search-container i{
-    position: absolute;
-    top: 50%;
-    left: 20px;  /* thay vì left: 0 */
-    transform: translateY(-50%); 
-    color: rgba(255, 255, 255, 0.7);
-    margin-right: 20px;
-    font-size: 1.2rem;
-    z-index: 1;
+.search-container i {
+  position: absolute;
+  top: 50%;
+  left: 20px; /* thay vì left: 0 */
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.7);
+  margin-right: 20px;
+  font-size: 1.2rem;
+  z-index: 1;
 }
 
-.search-section input{
-    flex: 1;
-    padding: 18px 25px;
-    border: none;
-    border-radius: 30px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    color: white;
-    padding-left: 45px;
-    font-size: 15px;
+.search-section input {
+  flex: 1;
+  padding: 18px 25px;
+  border: none;
+  border-radius: 30px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  color: white;
+  padding-left: 45px;
+  font-size: 15px;
 }
 
-.search-section input:focus{
-    outline: none;
-    border-color: #7877c6;
-    box-shadow: 0 0 10px #7877c6;
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-2px);
+.search-section input:focus {
+  outline: none;
+  border-color: #7877c6;
+  box-shadow: 0 0 10px #7877c6;
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
 }
 
-.search-container:has(input:focus) i{
-    color: #7877c6;
-    transform: translateY(-50%) scale(1.15);
+.search-container:has(input:focus) i {
+  color: #7877c6;
+  transform: translateY(-50%) scale(1.15);
 }
-.search-container i{
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-input::placeholder{
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 18px;
+.search-container i {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 18px;
+}
 
-/* From Uiverse.io by gharsh11032000 */ 
+/* From Uiverse.io by gharsh11032000 */
 .animated-button {
   position: relative;
   display: flex;
@@ -245,122 +263,122 @@ input::placeholder{
   opacity: 1;
 }
 
-
-main .section-headrer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    margin-top: 2rem;
-
+main .section-headrer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;
 }
 
-main .section-headrer h2{
-    font-size: 1.8rem;
-    font-weight: 700;
+main .section-headrer h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
 }
 
-main .track-section{
-    display: flex;
-    /* justify-content: space-between;
+main .track-section {
+  display: flex;
+  /* justify-content: space-between;
     align-items: center;     */
-    gap: 20px;
-    flex-wrap: wrap;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-main .track-section .track-card-container{
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-    padding: 10px;
-
+main .track-section .track-card-container {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 10px;
 }
-main .track-section .track-card{
-    /* border: 1px solid red; */
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 15px;
-    width: calc(100% / 3 - 20px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
-
+main .track-section .track-card {
+  /* border: 1px solid red; */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 15px;
+  width: calc(100% / 3 - 20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
 }
 
-main .track-section .track-card img{
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 10px;
+main .track-section .track-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
-main .track-section .track-card h3{
-    font-size: 1.2rem;
-    margin-bottom: 5px;
+main .track-section .track-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
 }
-main .track-section .track-card p{
-    opacity: 0.8;
-    font-size: 1rem;
-    color: #ccc;
+main .track-section .track-card p {
+  opacity: 0.8;
+  font-size: 1rem;
+  color: #ccc;
 }
 
 /* Track card hover effects */
 .track-card {
-    cursor: pointer;
-    pointer-events: auto;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
 }
 
 .track-card:hover {
-    transform: translateY(-12px) scale(1.03);
-    box-shadow: 0 20px 50px rgba(120, 119, 198, 0.5);
-    z-index: 10;
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(120, 119, 198, 0.5);
+  z-index: 10;
 }
 
 .track-card:hover::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(120, 119, 198, 0.2) 0%, rgba(83, 52, 131, 0.2) 100%);
-    border-radius: inherit;
-    z-index: -1;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(120, 119, 198, 0.2) 0%,
+    rgba(83, 52, 131, 0.2) 100%
+  );
+  border-radius: inherit;
+  z-index: -1;
 }
 
 .track-card:hover img {
-    transform: scale(1.1);
-    filter: brightness(1.2);
+  transform: scale(1.1);
+  filter: brightness(1.2);
 }
 
 .track-card img {
-    transition: all 0.4s ease;
+  transition: all 0.4s ease;
 }
 
 .track-card:hover h3 {
-    color: #7877c6;
-    transform: translateX(5px);
+  color: #7877c6;
+  transform: translateX(5px);
 }
 
 .track-card h3 {
-    transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .track-card:hover p {
-    color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .track-card * {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 /* Active state */
 .track-card:active {
-    transform: translateY(-8px) scale(0.98);
+  transform: translateY(-8px) scale(0.98);
 }
 
-.modal{
+.modal {
   display: none;
   position: fixed;
   top: 50%;
@@ -390,7 +408,7 @@ main .track-section .track-card p{
 }
 
 /* Modal header */
-.modal-header{
+.modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
