@@ -7,42 +7,63 @@ document.addEventListener("DOMContentLoaded", function () {
 let access_token;
 let sessionId;
 let searchTimeout;
-const API_BASE = 'http://127.0.0.1:3000';
+const API_BASE = "http://127.0.0.1:3000";
 
 // ============= AUTH FUNCTIONS =============
 
 function setupAuthListeners() {
-  const loginBtn = document.getElementById("login-btn");
+  const googleLoginBtn = document.getElementById("google-login-btn");
+  const spotifyLoginBtn = document.getElementById("spotify-login-btn");
   const logoutBtn = document.getElementById("logout-btn");
 
-  loginBtn.addEventListener("click", () => {
-    window.location.href = `${API_BASE}/login`;
+  googleLoginBtn.addEventListener("click", () => {
+    const sessionQuery = sessionId
+      ? `?session=${encodeURIComponent(sessionId)}`
+      : "";
+    window.location.href = `${API_BASE}/auth/google/login${sessionQuery}`;
+  });
+
+  spotifyLoginBtn.addEventListener("click", () => {
+    if (!sessionId) {
+      return;
+    }
+    window.location.href = `${API_BASE}/login?session=${encodeURIComponent(sessionId)}`;
   });
 
   logoutBtn.addEventListener("click", async () => {
     if (sessionId) {
-      await axios.post(`${API_BASE}/api/logout/${sessionId}`);
+      await axios.post(`${API_BASE}/api/session/logout/${sessionId}`);
     }
+    sessionStorage.removeItem("app_session");
     sessionStorage.removeItem("spotify_session");
     sessionId = null;
     access_token = null;
-    updateAuthUI(false);
+    updateAuthUI(false, "", false);
     resetTrack();
+    initialApp();
   });
 }
 
-function updateAuthUI(isLoggedIn, userName = "") {
-  const loginBtn = document.getElementById("login-btn");
+function updateAuthUI(isLoggedIn, userName = "", hasSpotify = false) {
+  const googleLoginBtn = document.getElementById("google-login-btn");
+  const spotifyLoginBtn = document.getElementById("spotify-login-btn");
   const userInfo = document.getElementById("user-info");
   const userNameSpan = document.getElementById("user-name");
+  const providerStatus = document.getElementById("provider-status");
 
   if (isLoggedIn) {
-    loginBtn.style.display = "none";
+    googleLoginBtn.style.display = "none";
     userInfo.style.display = "flex";
+    spotifyLoginBtn.style.display = hasSpotify ? "none" : "block";
     userNameSpan.textContent = userName || "User";
+    providerStatus.textContent = hasSpotify
+      ? "Google + Spotify connected"
+      : "Connected with Google";
   } else {
-    loginBtn.style.display = "block";
+    googleLoginBtn.style.display = "block";
+    spotifyLoginBtn.style.display = "none";
     userInfo.style.display = "none";
+    providerStatus.textContent = "";
   }
 }
 
@@ -53,38 +74,62 @@ async function checkAuthStatus() {
 
   if (sessionFromUrl) {
     // Store session and clean URL
+    sessionStorage.setItem("app_session", sessionFromUrl);
     sessionStorage.setItem("spotify_session", sessionFromUrl);
     window.history.replaceState({}, document.title, "/");
     sessionId = sessionFromUrl;
   } else {
     // Check stored session
-    sessionId = sessionStorage.getItem("spotify_session");
+    sessionId =
+      sessionStorage.getItem("app_session") ||
+      sessionStorage.getItem("spotify_session");
   }
 
   if (sessionId) {
     try {
-      // Get access token from backend
-      const response = await axios.get(`${API_BASE}/api/token/${sessionId}`);
-      access_token = response.data.access_token;
+      const sessionResponse = await axios.get(
+        `${API_BASE}/api/session/${sessionId}`,
+      );
+      const sessionData = sessionResponse.data;
 
-      // Get user info
-      const userResponse = await axios.get("https://api.spotify.com/v1/me", {
-        headers: { Authorization: `Bearer ${access_token}` },
-      });
+      if (!sessionData.isLoggedIn || !sessionData.user) {
+        access_token = null;
+        updateAuthUI(false, "", false);
+        return { isAuthenticated: false, hasSpotify: false };
+      }
 
-      updateAuthUI(true, userResponse.data.display_name);
-      return true;
+      let hasSpotify = !!sessionData.hasSpotify;
+      access_token = null;
+
+      if (hasSpotify) {
+        try {
+          const tokenResponse = await axios.get(
+            `${API_BASE}/api/token/${sessionId}`,
+          );
+          access_token = tokenResponse.data.access_token;
+        } catch (error) {
+          console.error(
+            "Spotify token check failed:",
+            error.response?.data || error,
+          );
+          hasSpotify = false;
+        }
+      }
+
+      updateAuthUI(true, sessionData.user.name, hasSpotify);
+      return { isAuthenticated: true, hasSpotify };
     } catch (error) {
       console.error("Auth check failed:", error);
+      sessionStorage.removeItem("app_session");
       sessionStorage.removeItem("spotify_session");
       sessionId = null;
       access_token = null;
-      updateAuthUI(false);
-      return false;
+      updateAuthUI(false, "", false);
+      return { isAuthenticated: false, hasSpotify: false };
     }
   } else {
-    updateAuthUI(false);
-    return false;
+    updateAuthUI(false, "", false);
+    return { isAuthenticated: false, hasSpotify: false };
   }
 }
 
@@ -111,21 +156,32 @@ function resetTrack() {
 }
 
 async function initialApp() {
-  const isAuthenticated = await checkAuthStatus();
+  const authState = await checkAuthStatus();
+  const isAuthenticated = authState.isAuthenticated;
+  const hasSpotify = authState.hasSpotify;
 
-  if (isAuthenticated && access_token) {
+  if (isAuthenticated && hasSpotify && access_token) {
     const response = await getTrack();
     if (response) {
       displayTrack(response);
     }
+  } else if (isAuthenticated && !hasSpotify) {
+    const trackSection = document.getElementById("track-section");
+    trackSection.innerHTML = `
+            <div style="text-align: center; padding: 40px; color: #fff;">
+                <i class="fa-solid fa-link" style="font-size: 48px; margin-bottom: 20px;"></i>
+                <h3>Kết nối Spotify để nghe nhạc</h3>
+                <p>Bạn đã đăng nhập Google. Bấm "Connect Spotify" ở góc phải để tiếp tục.</p>
+            </div>
+        `;
   } else {
     // Show message to login
     const trackSection = document.getElementById("track-section");
     trackSection.innerHTML = `
             <div style="text-align: center; padding: 40px; color: #fff;">
-                <i class="fa-brands fa-spotify" style="font-size: 48px; margin-bottom: 20px;"></i>
-                <h3>Đăng nhập để khám phá nhạc</h3>
-                <p>Click "Login with Spotify" để bắt đầu</p>
+                <i class="fa-brands fa-google" style="font-size: 48px; margin-bottom: 20px;"></i>
+                <h3>Đăng nhập Google để bắt đầu</h3>
+                <p>Sau đó kết nối Spotify để tìm và mở bài hát.</p>
             </div>
         `;
   }
