@@ -26,12 +26,17 @@
             <nav class="nav">
                 <!-- Login/User Info -->
                 <div id="auth-section">
-                    <button class="button-header" id="login-btn" style="display: none;">
-                        <i class="fa-brands fa-spotify"></i>
-                        Login with Spotify
-                    </button>
+                <button class="button-header google-btn" id="google-login-btn" style="display: none;">
+                  <i class="fa-brands fa-google"></i>
+                  Login with Google
+                </button>
+                <button class="button-header" id="spotify-login-btn" style="display: none;">
+                  <i class="fa-brands fa-spotify"></i>
+                  Connect Spotify
+                </button>
                     <div id="user-info" style="display: none; align-items: center; gap: 10px;">
                         <span id="user-name" style="color: #fff;"></span>
+                  <span id="provider-status" style="color: #d0ffd6; font-size: 0.85rem;"></span>
                         <button class="button-header" id="logout-btn">
                             <i class="fa-solid fa-right-from-bracket"></i>
                             Logout
